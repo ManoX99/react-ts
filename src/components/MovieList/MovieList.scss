@@ -1,0 +1,165 @@
+@use 'src/variables' as a;
+
+@keyframes moveInLeft {
+  0% {
+      opacity: 0;
+      transform: translateX(-10rem);
+  }
+
+  80% {
+      transform: translateX(1rem);
+  }
+
+  100% {
+      opacity: 1;
+      transform: translate(0);
+  }
+}
+
+@keyframes borderFadeIn {
+  0% {
+    border: 2px solid rgba(49, 49, 49, 0);
+  }
+  100% {
+    border: 2px solid rgba(49,49,49, 1);
+  }
+}
+
+@keyframes imageFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+
+  25% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  75% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+
+.result {
+  margin: 0 auto;
+  margin-top: 5rem;
+  text-align: center;
+  width: 60%;
+
+  @media only screen and (max-width: 2100px) {
+    width: 80%;
+  }
+
+  @media only screen and (max-width: 1750px) {
+    width: 100%;
+  }
+
+  &__title--big {
+    font-size: 2.8rem;
+  }
+
+  &__container {
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  &__button-page {
+      border: none;
+      background-color: inherit;
+      color: rgb(84, 84, 230);
+      font-size: 1.6rem;
+      padding: .5rem;
+      cursor: pointer;
+  }
+
+  &__list {
+    list-style-type: none;
+    margin-top: 3rem;
+  }
+
+  &__item {
+    padding: 1rem;
+    border-radius: 7px;
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: 30% 50% 20%;
+    grid-template-rows: 30% 40% 30%;
+    align-items: center;
+    justify-items: center;
+    overflow: hidden;
+  }
+
+  &__img {
+    grid-row: 1/-1;
+    height: 20rem;
+    border-radius: 5px;
+  }
+
+  &__title {
+    font-size: 2.5rem;
+    justify-self: center;
+  }
+
+  &__text {
+    justify-self: center;
+    align-self: start;
+    
+  }
+
+  &__date {
+    font-size: 1.8rem;
+    font-weight: 400;
+    grid-column: 3/4;
+    grid-row: 1/2;
+    color: a.$color-gray;
+  }
+
+  &__vote {
+    align-self: start;
+    border: 2px solid a.$color-gray;
+    color: a.$color-gray;
+    border-radius: 50%;
+    padding: 1.2rem;
+    margin-top: .7rem;
+  }
+
+  &__button-details {
+    grid-column: 3/4;
+    grid-row: 3/4;
+    align-self: start;
+    background: inherit;
+    color: inherit;
+    font-size: inherit;
+    border: 1px solid #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+   
+  }
+}
+
+.target-page {
+  color: #fff;
+}

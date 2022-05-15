@@ -1,0 +1,64 @@
+@use 'src/variables' as a;
+
+.home {
+  width: 70%;
+  margin: 0 auto;
+}
+
+
+.header {
+  margin-top: 3rem;
+  text-align: center;
+
+  &__title {
+    font-size: 4.5rem;
+    letter-spacing: 1.5px;
+  }
+
+  &__text {
+    font-size: 1.8rem;
+    margin-top: 1.5rem;
+    letter-spacing: .5px;
+  }
+}
+
+.search {
+  text-align: center;
+  margin-top: 4rem;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+
+  &__input {
+    width: 30%;
+    height: 3.5rem;
+    padding: 1.5rem;
+    margin-right: -3.5rem;
+    border-radius: 100px;
+    outline: none;
+    border: none;
+    font-size: 1.4rem;
+    transition: all .2s;
+
+    &:focus {
+      outline: none;
+      width: 35%;
+  }
+  }
+
+  &__button {
+    border: none;
+    background-color: inherit;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    fill: #000;
+  }
+}
+

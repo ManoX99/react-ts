@@ -17,7 +17,6 @@ function App() {
   const [recommendedMovies, setRecommendedMovies] = useState<MovieRecommendationsInterface | null>(null);
   const [trendingMovies, setTrendingMovies] = useState<MoviesInterface | null>(null);
   
-  console.log(trendingMovies)
   useEffect( () => {
     getTrendingMovies();
   }, []);

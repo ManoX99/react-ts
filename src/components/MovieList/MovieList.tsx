@@ -7,17 +7,17 @@ interface Props {
   page: number | null;
   setTargetPage: React.Dispatch<React.SetStateAction<number | null>>
   setMovieId: React.Dispatch<React.SetStateAction<number | null>>
-  setHomeRoute: React.Dispatch<React.SetStateAction<boolean>>
+  setRoute: React.Dispatch<React.SetStateAction<string>>
 }
 
-const MovieList: React.FC<Props>= ({ movies, page, setTargetPage, setMovieId, setHomeRoute }) => {
+const MovieList: React.FC<Props> = ({ movies, page, setTargetPage, setMovieId, setRoute }) => {
   // counter for animations delay + some seconds (static) for border and image
   let counter: number = 0;
   const pulseDelay: number = movies.results.length;
 
   // Make an array for total number of page results
   const arr: number[] = [];
-  
+
   for (let i = 1; i <= movies.total_pages; i++) {
         arr.push(i);
   }
@@ -44,7 +44,7 @@ const MovieList: React.FC<Props>= ({ movies, page, setTargetPage, setMovieId, se
               <p className="result__text" style={{animation: `moveInLeft .5s ease-in ${counter}s both`}}>{movie.overview}</p>
               <span className="result__date" style={{animation: `pulse 2s ease-in-out ${pulseDelay}s both`}}>{movie.release_date}</span>
               <span className="result__vote" style={{animation: `pulse 2s ease-in-out ${pulseDelay}s both`}}>{movie.vote_average}</span> 
-              <button type="button" className="result__button-details" onClick= {() => {setMovieId(movie.id); setHomeRoute(false)}} style={{animation: `imageFadeIn .5s ease-in ${counter + .4}s both`}}>Details</button>
+              <button type="button" className="result__button-details" onClick= {() => {setMovieId(movie.id); setRoute('details')}} style={{animation: `imageFadeIn .5s ease-in ${counter + .4}s both`}}>Details</button>
             </li>
           );
           }

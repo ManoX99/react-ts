@@ -100,7 +100,7 @@
   }
 
   &__item {
-    padding: 1rem;
+    padding: 2rem;
     border-radius: 7px;
     margin-bottom: 1rem;
     display: grid;
@@ -109,6 +109,9 @@
     align-items: center;
     justify-items: center;
     overflow: hidden;
+    @media only screen and (max-width: 700px) {
+      padding: .5rem;
+    }
   }
 
   &__img {
@@ -120,12 +123,18 @@
   &__title {
     font-size: 2.5rem;
     justify-self: center;
+
+    @media only screen and (max-width: 700px) {
+      font-size: 2rem;
+    }
   }
 
   &__text {
     justify-self: center;
     align-self: start;
-    
+    @media only screen and (max-width: 700px) {
+      font-size: 1.4rem;
+    }
   }
 
   &__date {

@@ -1,0 +1,40 @@
+@use 'src/variables' as a;
+
+
+.trending {
+  margin-top: 10rem;
+
+  @media only screen and (max-width: 1300px) {
+    margin-top: 5rem;
+  }
+
+  &__title {
+    text-align: center;
+    font-size: 2.8rem;
+  }
+
+  &__list {
+    margin-top: 7rem;
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    gap: 1.5rem;
+  }
+
+  &__item {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+    cursor: pointer;
+
+    &-title{
+      font-size: 1.6rem;
+    }
+
+    &-date {
+      color: a.$color-gray;
+      margin-bottom: .5rem;
+    }
+  }
+}

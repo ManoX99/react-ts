@@ -4,33 +4,42 @@ import movieApi from './apis/movieApi';
 import MovieList from './components/MovieList/MovieList';
 import { MoviesInterface, MovieDetailsInterface, MovieRecommendationsInterface } from './types/types';
 import MovieCard from './components/MovieCard/MovieCard';
+import TrendingMovies from './components/TrendingMovies/TrendingMovies';
 
 function App() {
   const [movies, setMovies] = useState<MoviesInterface | null>(null);
   const [search, setSearch] = useState<string>("");
   const [page, setPage] = useState<number | null>(null);
   const [targetPage, setTargetPage] = useState<number | null>(null);
-  const [homeRoute, setHomeRoute] = useState<boolean>(true);
+  const [route, setRoute] = useState<string>('home');
   const [movieId, setMovieId] = useState<number | null>(null);
   const [movieDetails, setMovieDetails] = useState<MovieDetailsInterface | null>(null);
   const [recommendedMovies, setRecommendedMovies] = useState<MovieRecommendationsInterface | null>(null);
+  const [trendingMovies, setTrendingMovies] = useState<MoviesInterface | null>(null);
+  
+  console.log(trendingMovies)
+  useEffect( () => {
+    getTrendingMovies();
+  }, []);
 
   useEffect(() => {
     if (targetPage !== null) {
       getMovieWithSearch(search, targetPage)
     }
-  },[targetPage])
+  },[targetPage]);
   
   useEffect(() => {
     if (movieId !== null) {
       getMovieWithId(movieId)
     }
-  },[movieId])
+  },[movieId]);
+
+  
 
   const onSubmit = (e: React.FormEvent) :void => {
     e.preventDefault();
     getMovieWithSearch(search);
-    setHomeRoute(true);
+    setRoute('search');
   }
 
   // Get movies based on search
@@ -61,21 +70,31 @@ function App() {
 
     setMovieDetails(firstResponse.data);
     setRecommendedMovies(secondResponse.data);
-  }, [])
+  }, []);
+
+  // Get Trending movies
+
+  const getTrendingMovies = async () => {
+    const response = await movieApi.get<MoviesInterface>("/trending/movies/day");
+    
+    setTrendingMovies(response.data);
+  };
 
   // Render based on search response
 
   const showResults = () => {
-    if (homeRoute === true){
+    if (route === 'search'){
       if (movies?.total_results === 0 ) {
         return <div> No results found </div> ;
       } else if (movies === null) {
         return null;
       } else {
-       return <MovieList movies={movies} page={page} setTargetPage={setTargetPage} setMovieId={setMovieId} setHomeRoute={setHomeRoute}/>;
+       return <MovieList movies={movies} page={page} setTargetPage={setTargetPage} setMovieId={setMovieId} setRoute={setRoute}/>;
       }
-    } else {
-      return <MovieCard movieDetails={movieDetails} setHomeRoute={setHomeRoute} recommendedMovies={recommendedMovies}/>;
+    } else if (route === 'details') {
+      return <MovieCard movieDetails={movieDetails} route={route} setRoute={setRoute} recommendedMovies={recommendedMovies} getMovieWithId={getMovieWithId} />;
+    } else if (route === 'home') {
+      return <TrendingMovies trendingMovies= {trendingMovies} getMovieWithId={getMovieWithId} setRoute={setRoute}/>
     }
   }
 
